@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/language/appLocalizations.dart';
 import 'package:flutter_app/models/popular_filter_list.dart';
 import 'package:flutter_app/modules/hotel_booking/filter_screen/slider_view.dart';
 import 'package:flutter_app/utils/themes.dart';
@@ -37,7 +36,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
               onBackClick: () {
                 Navigator.pop(context);
               },
-              titleText: AppLocalizations(context).of("filtter"),
+              titleText:  ("filtter"),
             ),
             // Padding(
             //   padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
@@ -81,7 +80,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
                   bottom: 16 + MediaQuery.of(context).padding.bottom,
                   top: 8),
               child: CommonButton(
-                  buttonText: AppLocalizations(context).of("Apply_text"),
+                  buttonText:  ("Apply_text"),
                   onTap: () {
                     Navigator.pop(context, true);
                   }),
@@ -101,7 +100,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
           padding:
               const EdgeInsets.only(left: 16, right: 16, top: 16, bottom: 8),
           child: Text(
-            AppLocalizations(context).of("type of accommodation"),
+             ("type of accommodation"),
             textAlign: TextAlign.left,
             style: TextStyle(
                 color: Colors.grey,
@@ -142,7 +141,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
                 children: <Widget>[
                   Expanded(
                     child: Text(
-                      AppLocalizations(context).of(date.titleTxt),
+                       (date.titleTxt),
                       // style: TextStyle(color: Colors.white),
                     ),
                   ),
@@ -214,7 +213,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
           padding:
               const EdgeInsets.only(left: 16, right: 16, top: 16, bottom: 8),
           child: Text(
-            AppLocalizations(context).of("distance from city"),
+             ("distance from city"),
             textAlign: TextAlign.left,
             style: TextStyle(
                 color: Colors.grey,
@@ -244,7 +243,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
           padding:
               const EdgeInsets.only(left: 16, right: 16, top: 16, bottom: 8),
           child: Text(
-            AppLocalizations(context).of("popular filter"),
+             ("popular filter"),
             textAlign: TextAlign.left,
             style: TextStyle(
                 color: Colors.grey,
@@ -306,7 +305,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
                             FittedBox(
                               fit: BoxFit.cover,
                               child: Text(
-                                AppLocalizations(context).of(date.titleTxt),
+                                 (date.titleTxt),
                               ),
                             ),
                           ],
@@ -339,7 +338,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
         Padding(
           padding: const EdgeInsets.all(16.0),
           child: Text(
-            AppLocalizations(context).of("price_text"),
+             ("price_text"),
             textAlign: TextAlign.left,
             style: TextStyle(
                 color: Colors.grey,

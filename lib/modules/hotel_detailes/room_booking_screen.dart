@@ -5,8 +5,9 @@ import '../../models/hotel_list_data.dart';
 
 class RoomBookingScreen extends StatefulWidget {
   final String hotelName;
+  final HotelListData? hotelData; // إضافة بيانات الفندق
 
-  const RoomBookingScreen({Key? key, required this.hotelName})
+  const RoomBookingScreen({Key? key, required this.hotelName, this.hotelData})
       : super(key: key);
   @override
   _RoomBookingScreenState createState() => _RoomBookingScreenState();
@@ -53,6 +54,7 @@ class _RoomBookingScreenState extends State<RoomBookingScreen>
                   roomData: romeList[index],
                   animation: animation,
                   animationController: animationController,
+                  hotelData: widget.hotelData, // تمرير بيانات الفندق
                 );
               },
             ),

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/language/appLocalizations.dart';
 import 'package:flutter_app/utils/localfiles.dart';
 import 'package:flutter_app/utils/text_styles.dart';
 import 'package:flutter_app/utils/themes.dart';
@@ -29,7 +28,7 @@ class _InviteFriendState extends State<InviteFriend> {
                 Container(
                   padding: EdgeInsets.only(top: 8),
                   child: Text(
-                    AppLocalizations(context).of("invite_your_friend"),
+                     ("invite_your_friend"),
                     style: TextStyles(context).getBoldStyle().copyWith(
                           fontSize: 20,
                         ),
@@ -38,7 +37,7 @@ class _InviteFriendState extends State<InviteFriend> {
                 Container(
                   padding: EdgeInsets.only(top: 16, left: 24, right: 24),
                   child: Text(
-                    AppLocalizations(context).of("invite_friend_desc"),
+                     ("invite_friend_desc"),
                     textAlign: TextAlign.center,
                     style: TextStyles(context).getRegularStyle().copyWith(
                           fontSize: 16,
@@ -65,7 +64,7 @@ class _InviteFriendState extends State<InviteFriend> {
                               Padding(
                                 padding: const EdgeInsets.all(4.0),
                                 child: Text(
-                                  AppLocalizations(context).of("share_text"),
+                                   ("share_text"),
                                   style: TextStyles(context)
                                       .getRegularStyle()
                                       .copyWith(color: AppTheme.whiteColor),

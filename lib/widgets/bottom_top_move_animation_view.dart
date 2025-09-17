@@ -10,20 +10,21 @@ class BottomTopMoveAnimationView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedBuilder(
-      animation: animationController,
-      child: child,
-      builder: (BuildContext context, Widget? child) {
-        return FadeTransition(
-          opacity: animationController,
-          // FadeTransition and Transform : just for screen loading animation on fistTime
-          child: new Transform(
-            transform: new Matrix4.translationValues(
-                0.0, 40 * (1.0 - animationController.value), 0.0),
-            child: child,
-          ),
-        );
-      },
+    // إنشاء Animation<Offset> للحركة من الأسفل للأعلى
+    final Animation<Offset> slideAnimation = Tween<Offset>(
+      begin: const Offset(0, 0.1), // بداية من أسفل الشاشة
+      end: Offset.zero, // النهاية في مكانها الطبيعي
+    ).animate(CurvedAnimation(
+      parent: animationController,
+      curve: Curves.easeOut,
+    ));
+
+    return FadeTransition(
+      opacity: animationController,
+      child: SlideTransition(
+        position: slideAnimation,
+        child: child,
+      ),
     );
   }
 }

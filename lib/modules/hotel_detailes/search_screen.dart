@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/language/appLocalizations.dart';
 import 'package:flutter_app/models/hotel_list_data.dart';
 import 'package:flutter_app/modules/hotel_detailes/search_type_list.dart';
 import 'package:flutter_app/modules/hotel_detailes/search_view.dart';
@@ -51,7 +50,7 @@ class _SearchScreenState extends State<SearchScreen>
               onBackClick: () {
                 Navigator.pop(context);
               },
-              titleText: AppLocalizations(context).of("search_hotel"),
+              titleText:  ("search_hotel"),
             ),
             Expanded(
               child: SingleChildScrollView(
@@ -67,8 +66,7 @@ class _SearchScreenState extends State<SearchScreen>
                               textEditingController: myController,
 iconData: Icons.search, // أيقونة Flutter العادية
                               enabled: true,
-                              text: AppLocalizations(context)
-                                  .of("where_are_you_going"),
+                              text: ("where_are_you_going"),
                             ),
                           ),
                         ),
@@ -80,7 +78,7 @@ iconData: Icons.search, // أيقونة Flutter العادية
                             children: <Widget>[
                               Expanded(
                                 child: Text(
-                                  AppLocalizations(context).of("Last_search"),
+                                   ("Last_search"),
                                   style: const TextStyle(
                                     fontWeight: FontWeight.w600,
                                     fontSize: 16,
@@ -102,9 +100,7 @@ iconData: Icons.search, // أيقونة Flutter العادية
                                     padding: const EdgeInsets.all(8),
                                     child: Row(
                                       children: <Widget>[
-                                        Text(
-                                          AppLocalizations(context)
-                                              .of("clear_all"),
+                                        Text(("clear_all"),
                                           textAlign: TextAlign.left,
                                           style: TextStyle(
                                             fontWeight: FontWeight.w600,

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/language/appLocalizations.dart';
 import 'package:flutter_app/utils/text_styles.dart';
 
 class PagePopup extends StatelessWidget {
@@ -30,7 +29,7 @@ class PagePopup extends StatelessWidget {
           flex: 1,
           child: Container(
             child: Text(
-              AppLocalizations(context).of(imageData.titleText),
+               (imageData.titleText),
               textAlign: TextAlign.center,
               style: TextStyles(context).getTitleStyle().copyWith(
                     fontSize: 24,
@@ -43,7 +42,7 @@ class PagePopup extends StatelessWidget {
           flex: 1,
           child: Container(
             child: Text(
-              AppLocalizations(context).of(imageData.subText),
+               (imageData.subText),
               textAlign: TextAlign.center,
               style: TextStyles(context).getDescriptionStyle(),
             ),

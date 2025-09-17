@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/language/appLocalizations.dart';
 import 'package:flutter_app/utils/localfiles.dart';
 import 'package:flutter_app/utils/text_styles.dart';
 import 'package:flutter_app/utils/themes.dart';
@@ -31,7 +30,7 @@ class _EditProfileState extends State<EditProfile> {
             children: <Widget>[
               CommonAppbarView(
                 iconData: Icons.arrow_back,
-                titleText: AppLocalizations(context).of("edit_profile"),
+                titleText:  ("edit_profile"),
                 onBackClick: () {
                   Navigator.pop(context);
                 },
@@ -58,7 +57,7 @@ class _EditProfileState extends State<EditProfile> {
                                           padding: const EdgeInsets.only(
                                               left: 16.0, bottom: 16, top: 16),
                                           child: Text(
-                                            AppLocalizations(context).of(
+                                             (
                                                 userInfoList[index].titleTxt),
                                             style: TextStyles(context)
                                                 .getDescriptionStyle()

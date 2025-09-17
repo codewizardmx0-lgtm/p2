@@ -93,25 +93,25 @@ static TextStyle getTextStyle(FontFamilyType fontFamilyType, TextStyle textStyle
   String fontFamily;
   switch (fontFamilyType) {
     case FontFamilyType.Montserrat:
-      fontFamily = 'Montserrat';
+      fontFamily = 'Arial';
       break;
     case FontFamilyType.WorkSans:
-      fontFamily = 'WorkSans';
+      fontFamily = 'Arial';
       break;
     case FontFamilyType.Varela:
-      fontFamily = 'Varela';
+      fontFamily = 'Arial';
       break;
     case FontFamilyType.Satisfy:
-      fontFamily = 'Satisfy';
+      fontFamily = 'Arial';
       break;
     case FontFamilyType.DancingScript:
-      fontFamily = 'DancingScript';
+      fontFamily = 'Arial';
       break;
     case FontFamilyType.KaushanScript:
-      fontFamily = 'KaushanScript';
+      fontFamily = 'Arial';
       break;
     default:
-      fontFamily = 'Roboto';
+      fontFamily = 'Arial';
   }
 
   return textStyle.copyWith(fontFamily: fontFamily);

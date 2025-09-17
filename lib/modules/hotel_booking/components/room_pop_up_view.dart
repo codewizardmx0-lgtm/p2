@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/language/appLocalizations.dart';
 import 'package:flutter_app/models/room_data.dart';
 import 'package:flutter_app/providers/theme_provider.dart';
 import 'package:flutter_app/utils/text_styles.dart';
@@ -78,7 +77,7 @@ class _RoomPopupViewState extends State<RoomPopupView>
                         Padding(
                           padding: const EdgeInsets.all(16.0),
                           child: Text(
-                            AppLocalizations(context).of("room_selected"),
+                             ("room_selected"),
                             style: TextStyles(context).getBoldStyle().copyWith(
                                   fontSize: 16,
                                 ),
@@ -87,9 +86,9 @@ class _RoomPopupViewState extends State<RoomPopupView>
                         Divider(
                           height: 1,
                         ),
-                        getRowView(AppLocalizations(context).of("number_room"),
+                        getRowView( ("number_room"),
                             _roomData!.numberRoom, PopupTextType.no),
-                        getRowView(AppLocalizations(context).of("people_data"),
+                        getRowView( ("people_data"),
                             _roomData!.people, PopupTextType.ad),
                         // getRowView("Children", " (0-17)", ch, PopupTextType.ch),
                         Padding(
@@ -97,7 +96,7 @@ class _RoomPopupViewState extends State<RoomPopupView>
                               left: 16, right: 16, bottom: 16, top: 24),
                           child: CommonButton(
                             buttonText:
-                                AppLocalizations(context).of("Apply_date"),
+                                 ("Apply_date"),
                             onTap: () {
                               try {
                                 widget.onChnage(

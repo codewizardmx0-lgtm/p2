@@ -3,13 +3,10 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_app/common/common.dart';
-import 'package:flutter_app/language/appLocalizations.dart';
 import 'package:flutter_app/providers/theme_provider.dart';
-import 'package:flutter_app/utils/enum.dart';
 import 'package:flutter_app/modules/splash/introductionScreen.dart';
 import 'package:flutter_app/modules/splash/splashScreen.dart';
 import 'package:flutter_app/routes/routes.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 
 BuildContext? applicationcontext;
@@ -28,18 +25,6 @@ class _MotelAppState extends State<MotelApp> {
 
         final ThemeData _theme = provider.themeData;
         return MaterialApp(
-          localizationsDelegates: [
-            AppLocalizations.delegate,
-            GlobalMaterialLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
-          ],
-          supportedLocales: [
-            const Locale('en'), // English
-            const Locale('fr'), //French
-            const Locale('ja'), // Japanises
-            const Locale('ar'), //Arebic
-          ],
           navigatorKey: navigatorKey,
           title: 'Motel',
           debugShowCheckedModeBanner: false,
@@ -49,9 +34,7 @@ class _MotelAppState extends State<MotelApp> {
             _setFirstTimeSomeData(context, _theme);
             return Directionality(
               textDirection:
-                  context.read<ThemeProvider>().languageType == LanguageType.ar
-                      ? TextDirection.rtl
-                      : TextDirection.ltr,
+                  TextDirection.ltr, // إزالة التحقق من اللغة
               child: Builder(
                 builder: (BuildContext context) {
                   return MediaQuery(
@@ -73,17 +56,15 @@ class _MotelAppState extends State<MotelApp> {
     );
   }
 
-// when this application open every time on that time we check and update some theme data
+  // عند فتح التطبيق، ضبط البيانات الأساسية للثيم
   void _setFirstTimeSomeData(BuildContext context, ThemeData theme) {
     applicationcontext = context;
     _setStatusBarNavigationBarTheme(theme);
-    //we call some theme basic data set in app like color, font, theme mode, language
-    context
-        .read<ThemeProvider>()
-        .checkAndSetThemeMode(MediaQuery.of(context).platformBrightness);
+    context.read<ThemeProvider>().checkAndSetThemeMode(MediaQuery.of(context).platformBrightness);
     context.read<ThemeProvider>().checkAndSetColorType();
     context.read<ThemeProvider>().checkAndSetFonType();
-    context.read<ThemeProvider>().checkAndSetLanguage();
+    // إزالة استدعاء اللغة
+    // context.read<ThemeProvider>().checkAndSetLanguage();
   }
 
   void _setStatusBarNavigationBarTheme(ThemeData themeData) {

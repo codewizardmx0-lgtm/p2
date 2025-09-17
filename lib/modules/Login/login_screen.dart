@@ -5,6 +5,8 @@ import 'package:flutter_app/widgets/common_text_field_view.dart';
 import 'package:flutter_app/widgets/remove_focuse.dart';
 import 'package:flutter_app/utils/validator.dart';
 import 'package:flutter_app/routes/route_names.dart';
+import 'package:flutter_app/providers/auth_provider.dart';
+import 'package:provider/provider.dart';
 
 
 class LoginScreen extends StatefulWidget {
@@ -83,13 +85,56 @@ class _LoginScreenState extends State<LoginScreen> {
                       controller: _passwordController,
                     ),
                     _forgotYourPasswordUI(),
-                    CommonButton(
-                      padding: EdgeInsets.only(left: 24, right: 24, bottom: 16),
-                      buttonText: "تسجيل الدخول",
-                      onTap: () {
-                        if (_allValidation()) {
-                           NavigationServices(context).gotoTabScreen();
+                    Consumer<AuthProvider>(
+                      builder: (context, authProvider, child) {
+                        return CommonButton(
+                          padding: EdgeInsets.only(left: 24, right: 24, bottom: 16),
+                          buttonText: authProvider.isLoading ? "جاري تسجيل الدخول..." : "تسجيل الدخول",
+                          onTap: authProvider.isLoading ? null : () async {
+                            if (_allValidation()) {
+                              await _handleLogin(authProvider);
+                            }
+                          },
+                        );
+                      },
+                    ),
+                    
+                    // عرض رسائل الخطأ
+                    Consumer<AuthProvider>(
+                      builder: (context, authProvider, child) {
+                        if (authProvider.errorMessage.isNotEmpty) {
+                          return Padding(
+                            padding: const EdgeInsets.all(16.0),
+                            child: Container(
+                              padding: EdgeInsets.all(12),
+                              decoration: BoxDecoration(
+                                color: Colors.red.shade50,
+                                borderRadius: BorderRadius.circular(8),
+                                border: Border.all(color: Colors.red.shade200),
+                              ),
+                              child: Row(
+                                children: [
+                                  Icon(Icons.error_outline, color: Colors.red, size: 20),
+                                  SizedBox(width: 8),
+                                  Expanded(
+                                    child: Text(
+                                      authProvider.errorMessage,
+                                      style: TextStyle(
+                                        color: Colors.red.shade700,
+                                        fontSize: 14,
+                                      ),
+                                    ),
+                                  ),
+                                  IconButton(
+                                    icon: Icon(Icons.close, size: 18, color: Colors.red),
+                                    onPressed: () => authProvider.clearError(),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          );
                         }
+                        return SizedBox.shrink();
                       },
                     ),
                   ],
@@ -131,10 +176,42 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
+  /// معالجة تسجيل الدخول
+  Future<void> _handleLogin(AuthProvider authProvider) async {
+    // مسح الأخطاء السابقة
+    authProvider.clearError();
+    
+    try {
+      // محاولة تسجيل الدخول
+      bool success = await authProvider.signIn(
+        email: _emailController.text.trim(),
+        password: _passwordController.text.trim(),
+      );
+
+      if (success) {
+        // نجح تسجيل الدخول - انتقال للشاشة الرئيسية
+        print('✅ نجح تسجيل الدخول - انتقال للشاشة الرئيسية');
+        NavigationServices(context).gotoTabScreen();
+        
+        // عرض رسالة نجاح
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('مرحباً بك في تطبيق حجز الفنادق! 🎉'),
+            backgroundColor: Colors.green,
+            duration: Duration(seconds: 3),
+          ),
+        );
+      }
+    } catch (e) {
+      // سيتم عرض الخطأ عبر AuthProvider الذي يتم عرضه في Consumer
+      print('❌ فشل تسجيل الدخول: $e');
+    }
+  }
+
   bool _allValidation() {
     bool isValid = true;
     if (_emailController.text.trim().isEmpty) {
-      _errorEmail = 'البريد الإلكتروني لا يمكن أن يكون فارغًا';
+      _errorEmail = 'البريد الإلكتروني لا يمكن أن يكون فارغاً';
       isValid = false;
     } else if (!Validator.validateEmail(_emailController.text.trim())) {
       _errorEmail = 'يرجى إدخال بريد إلكتروني صالح';

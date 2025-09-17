@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/language/appLocalizations.dart';
 import 'package:flutter_app/modules/myTrips/favorites_list_view.dart';
 import 'package:flutter_app/modules/myTrips/finish_trip_view.dart';
 import 'package:flutter_app/modules/myTrips/upcoming_list_view.dart';
@@ -157,7 +156,7 @@ class _MyTripsScreenState extends State<MyTripsScreen>
             padding: const EdgeInsets.only(bottom: 16, top: 16),
             child: Center(
               child: Text(
-                AppLocalizations(context).of(text),
+                 (text),
                 style: TextStyles(context)
                     .getRegularStyle()
                     .copyWith(fontWeight: FontWeight.w600, color: color),
@@ -176,7 +175,7 @@ class _MyTripsScreenState extends State<MyTripsScreen>
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text(AppLocalizations(context).of("My_Trips"),
+          Text( ("My_Trips"),
               style: TextStyles(context).getBoldStyle().copyWith(fontSize: 22)),
         ],
       ),

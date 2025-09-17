@@ -3,7 +3,6 @@ import 'package:flutter_app/modules/explore/home_explore_screen.dart';
 import 'package:flutter_app/modules/myTrips/my_trips_screen.dart';
 import 'package:flutter_app/modules/profile/profile_screen.dart';
 import 'package:flutter_app/utils/themes.dart';
-import 'package:flutter_app/language/appLocalizations.dart';
 import 'package:flutter_app/providers/theme_provider.dart';
 import 'package:flutter_app/modules/bottom_tab/components/tab_button_UI.dart';
 import 'package:flutter_app/widgets/common_card.dart';
@@ -103,7 +102,7 @@ class _BottomTabScreenState extends State<BottomTabScreen>
               TabButtonUI(
                 icon: Icons.search, // أيقونة البحث
                 isSelected: tabType == BottomBarType.Explore,
-                text: AppLocalizations(context).of("explore"),
+                text: ("explore"),
                 onTap: () {
                   tabClick(BottomBarType.Explore);
                 },
@@ -111,7 +110,7 @@ class _BottomTabScreenState extends State<BottomTabScreen>
               TabButtonUI(
                 icon: Icons.favorite, // بديل لـ FontAwesomeIcons.heart
                 isSelected: tabType == BottomBarType.Trips,
-                text: AppLocalizations(context).of("trips"),
+                text: ("trips"),
                 onTap: () {
                   tabClick(BottomBarType.Trips);
                 },
@@ -119,7 +118,7 @@ class _BottomTabScreenState extends State<BottomTabScreen>
               TabButtonUI(
                 icon: Icons.person, // بديل لـ FontAwesomeIcons.user
                 isSelected: tabType == BottomBarType.Profile,
-                text: AppLocalizations(context).of("profile"),
+                text: ("profile"),
                 onTap: () {
                   tabClick(BottomBarType.Profile);
                 },

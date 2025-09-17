@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/utils/localfiles.dart';
 import 'package:flutter_app/utils/text_styles.dart';
 import 'package:flutter_app/utils/themes.dart';
-import 'package:flutter_app/language/appLocalizations.dart';
 import 'package:flutter_app/providers/theme_provider.dart';
 import 'package:flutter_app/routes/route_names.dart';
 import 'package:flutter_app/widgets/common_button.dart';
@@ -94,7 +93,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   opacity: isLoadText ? 1.0 : 0.0,
                   duration: Duration(milliseconds: 420),
                   child: Text(
-                    AppLocalizations(context).of("best_hotel_deals"),
+                     ("best_hotel_deals"),
                     textAlign: TextAlign.left,
                     style: TextStyles(context).getRegularStyle().copyWith(),
                   ),
@@ -109,7 +108,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   child: CommonButton(
                     padding: const EdgeInsets.only(
                         left: 48, right: 48, bottom: 8, top: 8),
-                    buttonText: AppLocalizations(context).of("get_started"),
+                    buttonText:  ("get_started"),
                     onTap: () {
                       NavigationServices(context).gotoIntroductionScreen();
                     },
@@ -123,7 +122,7 @@ class _SplashScreenState extends State<SplashScreen> {
                         bottom: 24.0 + MediaQuery.of(context).padding.bottom,
                         top: 16),
                     child: Text(
-                      AppLocalizations(context).of("already_have_account"),
+                       ("already_have_account"),
                       textAlign: TextAlign.left,
                       style: TextStyles(context).getDescriptionStyle().copyWith(
                             color: AppTheme.whiteColor,

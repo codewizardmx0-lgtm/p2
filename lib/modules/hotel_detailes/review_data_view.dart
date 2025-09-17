@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/language/appLocalizations.dart';
 import 'package:flutter_app/models/hotel_list_data.dart';
 import 'package:flutter_app/utils/text_styles.dart';
 import 'package:flutter_app/utils/themes.dart';
@@ -66,7 +65,7 @@ class ReviewsView extends StatelessWidget {
                     Row(
                       children: [
                         Text(
-                          AppLocalizations(context).of("last_update"),
+                           ("last_update"),
                           style: new TextStyles(context)
                               .getDescriptionStyle()
                               .copyWith(
@@ -134,7 +133,7 @@ class ReviewsView extends StatelessWidget {
                       child: Row(
                         children: <Widget>[
                           Text(
-                            AppLocalizations(context).of("reply"),
+                             ("reply"),
                             textAlign: TextAlign.left,
                             style:
                                 TextStyles(context).getRegularStyle().copyWith(

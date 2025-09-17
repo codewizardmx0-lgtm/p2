@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/language/appLocalizations.dart';
 import 'package:flutter_app/modules/hotel_booking/components/filter_bar_UI.dart';
 import 'package:flutter_app/modules/hotel_booking/components/map_and_list_view.dart';
 import 'package:flutter_app/modules/hotel_booking/components/time_date_view.dart';
@@ -235,7 +234,7 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
           Expanded(
             child: Center(
               child: Text(
-                AppLocalizations(context).of("explore"),
+                 ("explore"),
                 style: TextStyles(context).getTitleStyle(),
               ),
             ),

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/language/appLocalizations.dart';
 import 'package:flutter_app/utils/text_styles.dart';
 import 'package:flutter_app/utils/themes.dart';
 import 'package:flutter_app/widgets/common_appbar_view.dart';
@@ -71,7 +70,7 @@ class _HowDoScreenState extends State<HowDoScreen> {
                                               bottom: 16),
                                           child: Container(
                                             child: Text(
-                                              AppLocalizations(context).of(
+                                               (
                                                   subHelpList[index].subTxt),
                                               //   subHelpList[index].subTxt,
                                               style: TextStyles(context)

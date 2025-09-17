@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/language/appLocalizations.dart';
 import 'package:flutter_app/models/room_data.dart';
 import 'package:flutter_app/modules/hotel_booking/components/calendar_pop_up_view.dart';
 import 'package:flutter_app/modules/hotel_booking/components/room_pop_up_view.dart';
@@ -30,7 +29,7 @@ class _TimeDateViewState extends State<TimeDateView> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          _getDateRoomUi(AppLocalizations(context).of("choose_date"),
+          _getDateRoomUi( ("choose_date"),
               "${DateFormat("dd, MMM", _languageType.toString().split(".")[1]).format(startDate)} - ${DateFormat("dd, MMM", _languageType.toString().split(".")[1]).format(endDate)}",
               () {
             _showDemoDialog(context);
@@ -40,7 +39,7 @@ class _TimeDateViewState extends State<TimeDateView> {
             height: 42,
             color: Colors.grey.withOpacity(0.8),
           ),
-          _getDateRoomUi(AppLocalizations(context).of("number_room"),
+          _getDateRoomUi( ("number_room"),
               Helper.getRoomText(_roomData), () {
             _showPopUp();
           }),

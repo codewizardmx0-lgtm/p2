@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/language/appLocalizations.dart';
 
 class SliderView extends StatefulWidget {
   final Function(double) onChnagedistValue;
@@ -37,7 +36,7 @@ class _SliderViewState extends State<SliderView> {
                 child: Row(
                   children: [
                     Text(
-                      AppLocalizations(context).of("Less_than"),
+                       ("Less_than"),
                       textAlign: TextAlign.center,
                     ),
                     Padding(
@@ -48,7 +47,7 @@ class _SliderViewState extends State<SliderView> {
                       ),
                     ),
                     Text(
-                      AppLocalizations(context).of("km_text"),
+                       ("km_text"),
                       textAlign: TextAlign.center,
                     ),
                   ],

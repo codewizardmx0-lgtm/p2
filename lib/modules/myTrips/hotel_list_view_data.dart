@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/language/appLocalizations.dart';
 import 'package:flutter_app/models/hotel_list_data.dart';
 import 'package:flutter_app/providers/theme_provider.dart';
 import 'package:flutter_app/utils/enum.dart';
@@ -146,7 +145,7 @@ class HotelListViewData extends StatelessWidget {
                                 ),
                           ),
                           Text(
-                            AppLocalizations(context).of("km_to_city"),
+                             ("km_to_city"),
                             overflow: TextOverflow.ellipsis,
                             style: TextStyles(context)
                                 .getDescriptionStyle()
@@ -180,7 +179,7 @@ class HotelListViewData extends StatelessWidget {
                                     ? 4.0
                                     : 2.0),
                             child: Text(
-                              AppLocalizations(context).of("per_night"),
+                               ("per_night"),
                               style: TextStyles(context)
                                   .getDescriptionStyle()
                                   .copyWith(

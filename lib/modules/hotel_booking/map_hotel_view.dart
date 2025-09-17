@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/language/appLocalizations.dart';
 import 'package:flutter_app/models/hotel_list_data.dart';
 import 'package:flutter_app/utils/helper.dart';
 import 'package:flutter_app/utils/text_styles.dart';
@@ -93,9 +92,7 @@ class MapHotelListView extends StatelessWidget {
                                                   fontSize: 14,
                                                 ),
                                           ),
-                                          Text(
-                                            AppLocalizations(context)
-                                                .of("km_to_city"),
+                                          Text(("km_to_city"),
                                             overflow: TextOverflow.ellipsis,
                                             style: TextStyles(context)
                                                 .getDescriptionStyle()
@@ -127,9 +124,7 @@ class MapHotelListView extends StatelessWidget {
                                               fontSize: 22,
                                             ),
                                       ),
-                                      Text(
-                                        AppLocalizations(context)
-                                            .of("per_night"),
+                                      Text(("per_night"),
                                         style: TextStyles(context)
                                             .getDescriptionStyle()
                                             .copyWith(

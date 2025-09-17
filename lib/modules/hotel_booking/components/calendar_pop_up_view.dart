@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/language/appLocalizations.dart';
 import 'package:flutter_app/modules/hotel_booking/components/custom_calendar.dart';
 import 'package:flutter_app/motel_app.dart';
 import 'package:flutter_app/providers/theme_provider.dart';
@@ -88,7 +87,7 @@ class _CalendarPopupViewState extends State<CalendarPopupView>
                         Row(
                           children: <Widget>[
                             _getFromToUi(
-                              AppLocalizations(context).of("From_text"),
+                               ("From_text"),
                               startDate != null
                                   ? DateFormat(
                                           "EEE, dd MMM",
@@ -104,7 +103,7 @@ class _CalendarPopupViewState extends State<CalendarPopupView>
                               color: Theme.of(context).dividerColor,
                             ),
                             _getFromToUi(
-                              AppLocalizations(context).of("to_text"),
+                               ("to_text"),
                               endDate != null
                                   ? DateFormat(
                                           "EEE, dd MMM",
@@ -138,7 +137,7 @@ class _CalendarPopupViewState extends State<CalendarPopupView>
                               left: 16, right: 16, bottom: 16, top: 8),
                           child: CommonButton(
                             buttonText:
-                                AppLocalizations(context).of("Apply_date"),
+                                 ("Apply_date"),
                             onTap: () {
                               try {
                                 widget.onApplyClick(startDate!, endDate!);

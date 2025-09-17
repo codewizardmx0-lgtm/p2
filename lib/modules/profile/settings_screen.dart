@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/language/appLocalizations.dart';
 import 'package:flutter_app/models/setting_list_data.dart';
 import 'package:flutter_app/providers/theme_provider.dart';
 import 'package:flutter_app/routes/route_names.dart';
@@ -42,7 +41,7 @@ class _SettingsScreenState extends State<SettingsScreen> with Helper {
                   onBackClick: () {
                     Navigator.pop(context);
                   },
-                  titleText: AppLocalizations(context).of("setting_text"),
+                  titleText:  ("setting_text"),
                 ),
                 Expanded(
                   child: ListView.builder(
@@ -92,9 +91,7 @@ class _SettingsScreenState extends State<SettingsScreen> with Helper {
                                   Expanded(
                                     child: Padding(
                                       padding: const EdgeInsets.all(16.0),
-                                      child: Text(
-                                        AppLocalizations(context)
-                                            .of(settingsList[index].titleTxt),
+                                      child: Text((settingsList[index].titleTxt),
                                         style: TextStyle(
                                             fontWeight: FontWeight.w500,
                                             fontSize: 16),
@@ -182,7 +179,7 @@ class _SettingsScreenState extends State<SettingsScreen> with Helper {
                         : e == ThemeModeType.light
                             ?Icons.wb_sunny    
                             :  Icons.nights_stay,
-                    AppLocalizations(context).of(e.toString().split(".")[1]),
+                     (e.toString().split(".")[1]),
                     e == themeProvider.themeModeType,
                   ),
                 ),
@@ -248,7 +245,7 @@ class _SettingsScreenState extends State<SettingsScreen> with Helper {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
-                      AppLocalizations(context).of("Hello"),
+                       ("Hello"),
                       style: AppTheme.getTextStyle(
                         element,
                         TextStyles(context).getRegularStyle().copyWith(
@@ -301,7 +298,7 @@ class _SettingsScreenState extends State<SettingsScreen> with Helper {
                         Padding(
                           padding: const EdgeInsets.all(16),
                           child: Text(
-                            AppLocalizations(context).of("selected_fonts"),
+                             ("selected_fonts"),
                             style: TextStyles(context)
                                 .getBoldStyle()
                                 .copyWith(fontSize: 22),
@@ -408,7 +405,7 @@ class _SettingsScreenState extends State<SettingsScreen> with Helper {
                   Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: Text(
-                      AppLocalizations(context).of("Selected color"),
+                       ("Selected color"),
                       style: TextStyles(context)
                           .getBoldStyle()
                           .copyWith(fontSize: 22),
@@ -488,7 +485,7 @@ class _SettingsScreenState extends State<SettingsScreen> with Helper {
                   Padding(
                     padding: const EdgeInsets.only(top: 16.0, bottom: 8),
                     child: Text(
-                      AppLocalizations(context).of("Selected language"),
+                       ("Selected language"),
                       style: TextStyles(context)
                           .getBoldStyle()
                           .copyWith(fontSize: 22),

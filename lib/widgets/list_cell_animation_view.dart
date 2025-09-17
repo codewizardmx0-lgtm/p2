@@ -16,16 +16,24 @@ class ListCellAnimationView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final slideAnimation = Tween<Offset>(
+      begin: Offset(0, yTranslation / 100), // يتحرك عموديًا
+      end: Offset.zero,
+    ).animate(CurvedAnimation(
+      parent: animationController,
+      curve: Curves.easeOut,
+    ));
+
     return AnimatedBuilder(
       animation: animationController,
       child: child,
       builder: (BuildContext context, Widget? child) {
         return FadeTransition(
           opacity: animation,
-          child: new Transform(
-              transform: new Matrix4.translationValues(
-                  0.0, yTranslation * (1.0 - animation.value), 0.0),
-              child: child),
+          child: SlideTransition(
+            position: slideAnimation,
+            child: child,
+          ),
         );
       },
     );

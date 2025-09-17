@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/language/appLocalizations.dart';
 import 'package:flutter_app/modules/splash/components/page_pop_view.dart';
 import 'package:flutter_app/providers/theme_provider.dart';
 import 'package:flutter_app/utils/enum.dart';
@@ -151,7 +150,7 @@ class PagePopup extends StatelessWidget {
               children: <Widget>[
                 Container(
                   child: Text(
-                    AppLocalizations(context).of(imageData.titleText),
+                     (imageData.titleText),
                     textAlign: TextAlign.left,
                     style: TextStyles(context)
                         .getTitleStyle()
@@ -163,7 +162,7 @@ class PagePopup extends StatelessWidget {
                 ),
                 Container(
                   child: Text(
-                    AppLocalizations(context).of(imageData.subText),
+                     (imageData.subText),
                     textAlign: TextAlign.left,
                     style: TextStyles(context).getRegularStyle().copyWith(
                         fontSize: 18,

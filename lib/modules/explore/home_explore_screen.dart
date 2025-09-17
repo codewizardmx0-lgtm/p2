@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/language/appLocalizations.dart';
 import 'package:flutter_app/models/hotel_list_data.dart';
 import 'package:flutter_app/modules/explore/home_explore_slider_view.dart';
 import 'package:flutter_app/modules/explore/hotel_list_view_page.dart';
@@ -14,6 +13,7 @@ import 'package:flutter_app/widgets/bottom_top_move_animation_view.dart';
 import 'package:flutter_app/widgets/common_button.dart';
 import 'package:flutter_app/widgets/common_card.dart';
 import 'package:flutter_app/widgets/common_search_bar.dart';
+import 'package:flutter_app/modules/hotel_detailes/hotel_detailes.dart';
 import 'package:provider/provider.dart';
 
 class HomeExploreScreen extends StatefulWidget {
@@ -90,7 +90,7 @@ class _HomeExploreScreenState extends State<HomeExploreScreen>
                   if (index == 0) {
                     return TitleView(
                       titleTxt:
-                          AppLocalizations(context).of("popular_destination"),
+                           ("popular_destination"),
                       subTxt: '',
                       animation: animation,
                       animationController: widget.animationController,
@@ -102,13 +102,36 @@ class _HomeExploreScreenState extends State<HomeExploreScreen>
                       //Popular Destinations animation view
                       child: PopularListView(
                         animationController: widget.animationController,
-                        callBack: (index) {},
+                        callBack: (index) {
+                          // تحويل بيانات popular destination إلى بيانات فندق للعرض في صفحة التفاصيل
+                          var popularData = HotelListData.popularList[index];
+                          var hotelData = HotelListData(
+                            imagePath: popularData.imagePath,
+                            titleTxt: popularData.titleTxt + " Hotel",
+                            subTxt: "Beautiful destination",
+                            dist: 2.5,
+                            reviews: 125,
+                            rating: 4.6,
+                            perNight: 250,
+                          );
+                          
+                          Navigator.of(context).push(
+                            PageRouteBuilder(
+                              pageBuilder: (context, animation, _) {
+                                return HotelDetailes(hotelData: hotelData);
+                              },
+                              transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                                return FadeTransition(opacity: animation, child: child);
+                              },
+                            ),
+                          );
+                        },
                       ),
                     );
                   } else if (index == 2) {
                     return TitleView(
-                      titleTxt: AppLocalizations(context).of("best_deal"),
-                      subTxt: AppLocalizations(context).of("view_all"),
+                      titleTxt:  ("best_deal"),
+                      subTxt:  ("view_all"),
                       animation: animation,
                       isLeftButton: true,
                       animationController: widget.animationController,
@@ -194,7 +217,7 @@ class _HomeExploreScreenState extends State<HomeExploreScreen>
                       padding: const EdgeInsets.only(
                           left: 24, right: 24, top: 8, bottom: 8),
                       child: Text(
-                        AppLocalizations(context).of("view_hotel"),
+                         ("view_hotel"),
                         style: TextStyles(context)
                             .getRegularStyle()
                             .copyWith(color: AppTheme.whiteColor),
@@ -277,7 +300,7 @@ class _HomeExploreScreenState extends State<HomeExploreScreen>
           child: CommonSearchBar(
             iconData: Icons.search, // استخدم أيقونات Flutter الأساسية
             enabled: false,
-            text: AppLocalizations(context).of("where_are_you_going"),
+            text:  ("where_are_you_going"),
           ),
         ),
       ),

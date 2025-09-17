@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/language/appLocalizations.dart';
 import 'package:flutter_app/providers/theme_provider.dart';
 import 'package:flutter_app/routes/route_names.dart';
 import 'package:flutter_app/utils/localfiles.dart';
@@ -47,28 +46,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   padding: EdgeInsets.all(0.0),
                   itemCount: userSettingsList.length,
                   itemBuilder: (context, index) {
+                    // الحصول على النص مباشرة
+                      final String title = userSettingsList[index].titleTxt.toString();
                     return InkWell(
                       onTap: () async {
-                        //setting screen view
+                        // Navigate to the correct screen
                         if (index == 5) {
                           NavigationServices(context).gotoSettingsScreen();
-
-                          //   setState(() {});
-                        }
-                        //help center screen view
-
-                        if (index == 3) {
+                        } else if (index == 3) {
                           NavigationServices(context).gotoHeplCenterScreen();
-                        }
-                        //Chage password  screen view
-
-                        if (index == 0) {
-                          NavigationServices(context)
-                              .gotoChangepasswordScreen();
-                        }
-                        //Invite friend  screen view
-
-                        if (index == 1) {
+                        } else if (index == 0) {
+                          NavigationServices(context).gotoChangepasswordScreen();
+                        } else if (index == 1) {
                           NavigationServices(context).gotoInviteFriend();
                         }
                       },
@@ -82,9 +71,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   child: Padding(
                                     padding: const EdgeInsets.all(16.0),
                                     child: Text(
-                                      AppLocalizations(context).of(
-                                        userSettingsList[index].titleTxt,
-                                      ),
+                                      title,
                                       style: TextStyles(context)
                                           .getRegularStyle()
                                           .copyWith(
@@ -107,9 +94,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           ),
                           Padding(
                             padding: const EdgeInsets.only(left: 16, right: 16),
-                            child: Divider(
-                              height: 1,
-                            ),
+                            child: Divider(height: 1),
                           )
                         ],
                       ),
@@ -139,15 +124,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(
-                    AppLocalizations(context).of("raaj_text"),
-                    style: new TextStyle(
+                    "Raaj", // استبدل النص بالثابت
+                    style: TextStyle(
                       fontSize: 22,
                       fontWeight: FontWeight.w700,
                     ),
                   ),
                   Text(
-                    AppLocalizations(context).of("view_edit"),
-                    style: new TextStyle(
+                    "View/Edit Profile", // استبدال النص المباشر
+                    style: TextStyle(
                       fontSize: 18,
                       color: Theme.of(context).disabledColor,
                     ),

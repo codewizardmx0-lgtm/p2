@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/utils/localfiles.dart';
 import 'package:flutter_app/utils/themes.dart';
-import 'package:flutter_app/language/appLocalizations.dart';
 import 'package:flutter_app/modules/splash/components/page_pop_view.dart';
 import 'package:flutter_app/routes/route_names.dart';
 import 'package:flutter_app/widgets/common_button.dart';
@@ -98,7 +97,7 @@ class _IntroductionScreenState extends State<IntroductionScreen> {
           CommonButton(
             padding:
                 const EdgeInsets.only(left: 48, right: 48, bottom: 8, top: 32),
-            buttonText: AppLocalizations(context).of("login"),
+            buttonText:  ("login"),
             onTap: () {
               NavigationServices(context).gotoLoginScreen();
             },
@@ -106,7 +105,7 @@ class _IntroductionScreenState extends State<IntroductionScreen> {
           CommonButton(
             padding:
                 const EdgeInsets.only(left: 48, right: 48, bottom: 32, top: 8),
-            buttonText: AppLocalizations(context).of("create_account"),
+            buttonText:  ("create_account"),
             backgroundColor: AppTheme.backgroundColor,
             textColor: AppTheme.primaryTextColor,
             onTap: () {

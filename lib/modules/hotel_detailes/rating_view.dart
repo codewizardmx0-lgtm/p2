@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/language/appLocalizations.dart';
 import 'package:flutter_app/utils/text_styles.dart';
 import 'package:flutter_app/utils/themes.dart';
 import 'package:flutter_app/widgets/common_card.dart';
@@ -41,7 +40,7 @@ class RatingView extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text(
-                          AppLocalizations(context).of("Overall_rating"),
+                           ("Overall_rating"),
                           textAlign: TextAlign.left,
                           style: TextStyles(context).getRegularStyle().copyWith(
                                 // fontWeight: FontWeight.w500,
@@ -95,7 +94,7 @@ class RatingView extends StatelessWidget {
         SizedBox(
           width: 60,
           child: Text(
-            AppLocalizations(context).of(text),
+             (text),
             textAlign: TextAlign.left,
             style: TextStyles(context).getRegularStyle().copyWith(
                   // fontWeight: FontWeight.w500,

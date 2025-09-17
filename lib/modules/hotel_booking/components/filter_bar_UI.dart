@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/language/appLocalizations.dart';
 import 'package:flutter_app/routes/route_names.dart';
 import 'package:flutter_app/utils/text_styles.dart';
 import 'package:flutter_app/utils/themes.dart';
@@ -27,7 +26,7 @@ class FilterBarUI extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.only(left: 0.0),
                     child: Text(
-                      AppLocalizations(context).of("hotel_found"),
+                       ("hotel_found"),
                       style: TextStyles(context).getRegularStyle(),
                     ),
                   ),
@@ -46,7 +45,7 @@ class FilterBarUI extends StatelessWidget {
                       child: Row(
                         children: <Widget>[
                           Text(
-                            AppLocalizations(context).of("filtter"),
+                             ("filtter"),
                             style: TextStyles(context).getRegularStyle(),
                           ),
                           Padding(

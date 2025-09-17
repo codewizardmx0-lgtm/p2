@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/language/appLocalizations.dart';
 import 'package:flutter_app/routes/route_names.dart';
 import 'package:flutter_app/utils/text_styles.dart';
 import 'package:flutter_app/utils/themes.dart';
@@ -57,10 +56,8 @@ class _HeplCenterScreenState extends State<HeplCenterScreen> {
                                   padding: const EdgeInsets.all(16.0),
                                   child: Text(
                                     helpSearchList[index].titleTxt != ""
-                                        ? AppLocalizations(context)
-                                            .of(helpSearchList[index].titleTxt)
-                                        : AppLocalizations(context)
-                                            .of(helpSearchList[index].subTxt),
+                                        ? (helpSearchList[index].titleTxt)
+                                        : (helpSearchList[index].subTxt),
                                     style: TextStyles(context)
                                         .getRegularStyle()
                                         .copyWith(
@@ -117,7 +114,7 @@ class _HeplCenterScreenState extends State<HeplCenterScreen> {
             Navigator.pop(context);
           },
           iconData: Icons.arrow_back,
-          titleText: AppLocalizations(context).of("how_can_help_you"),
+          titleText:  ("how_can_help_you"),
         ),
         Padding(
             padding: const EdgeInsets.only(left: 24, right: 24, top: 16),
@@ -126,7 +123,7 @@ class _HeplCenterScreenState extends State<HeplCenterScreen> {
               radius: 36,
               child: CommonSearchBar(
                 iconData: Icons.search,
-                text: AppLocalizations(context).of("search_help_artical"),
+                text:  ("search_help_artical"),
               ),
             )),
       ],

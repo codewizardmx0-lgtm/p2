@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/language/appLocalizations.dart';
 import 'package:flutter_app/models/hotel_list_data.dart';
 import 'package:flutter_app/providers/theme_provider.dart';
 import 'package:flutter_app/utils/enum.dart';
@@ -42,7 +41,9 @@ class HotelListView extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          Helper.getDateText(hotelData.date!) + ', ',
+                          hotelData.date != null 
+                              ? Helper.getDateText(hotelData.date!) + ', '
+                              : 'غير محدد, ',
                           style: TextStyles(context)
                               .getRegularStyle()
                               .copyWith(fontSize: 14),
@@ -50,9 +51,11 @@ class HotelListView extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.only(top: 2.0),
                           child: Text(
-                            Helper.getRoomText(hotelData.roomData!),
+                            hotelData.roomData != null
+                                ? Helper.getRoomText(hotelData.roomData!)
+                                : 'غرفة واحدة',
                             style: TextStyles(context)
-                                .getRegularStyle()
+                                .getDescriptionStyle()
                                 .copyWith(fontSize: 14),
                           ),
                         ),
@@ -124,9 +127,7 @@ class HotelListView extends StatelessWidget {
                                                 .getDescriptionStyle(),
                                           ),
                                           Expanded(
-                                            child: Text(
-                                              AppLocalizations(context)
-                                                  .of("km_to_city"),
+                                            child: Text(("km_to_city"),
                                               overflow: TextOverflow.ellipsis,
                                               style: TextStyles(context)
                                                   .getDescriptionStyle(),
@@ -144,9 +145,7 @@ class HotelListView extends StatelessWidget {
                                               style: TextStyles(context)
                                                   .getDescriptionStyle(),
                                             ),
-                                            Text(
-                                              AppLocalizations(context)
-                                                  .of("reviews"),
+                                            Text(("reviews"),
                                               style: TextStyles(context)
                                                   .getDescriptionStyle(),
                                             ),
@@ -181,7 +180,7 @@ class HotelListView extends StatelessWidget {
                                             ? 2.0
                                             : 0.0),
                                     child: Text(
-                                      AppLocalizations(context).of("per_night"),
+                                       ("per_night"),
                                       style: TextStyles(context)
                                           .getDescriptionStyle(),
                                     ),

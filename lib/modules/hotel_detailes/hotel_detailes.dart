@@ -1,7 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/language/appLocalizations.dart';
 import 'package:flutter_app/modules/hotel_detailes/review_data_view.dart';
 import 'package:flutter_app/routes/route_names.dart';
 import 'package:flutter_app/utils/helper.dart';
@@ -10,6 +9,8 @@ import 'package:flutter_app/utils/text_styles.dart';
 import 'package:flutter_app/utils/themes.dart';
 import 'package:flutter_app/widgets/common_button.dart';
 import 'package:flutter_app/widgets/common_card.dart';
+import 'package:flutter_app/providers/favorites_provider.dart';
+import 'package:provider/provider.dart';
 import '../../models/hotel_list_data.dart';
 import 'hotel_roome_list.dart';
 import 'rating_view.dart';
@@ -99,7 +100,7 @@ class _HotelDetailesState extends State<HotelDetailes>
                     children: <Widget>[
                       Expanded(
                         child: Text(
-                          AppLocalizations(context).of("summary"),
+                           ("summary"),
                           style: TextStyles(context).getBoldStyle().copyWith(
                                 fontSize: 14,
                                 letterSpacing: 0.5,
@@ -127,8 +128,8 @@ class _HotelDetailesState extends State<HotelDetailes>
                         ),
                         TextSpan(
                           text: !isReadless
-                              ? AppLocalizations(context).of("read_more")
-                              : AppLocalizations(context).of("less"),
+                              ?  ("read_more")
+                              :  ("less"),
                           style: TextStyles(context).getRegularStyle().copyWith(
                               color: AppTheme.primaryColor, fontSize: 14),
                           recognizer: new TapGestureRecognizer()
@@ -205,10 +206,10 @@ class _HotelDetailesState extends State<HotelDetailes>
                   padding: const EdgeInsets.only(
                       left: 16, right: 16, bottom: 16, top: 16),
                   child: CommonButton(
-                    buttonText: AppLocalizations(context).of("book_now"),
+                    buttonText:  ("book_now"),
                     onTap: () {
                       NavigationServices(context)
-                          .gotoRoomBookingScreen(widget.hotelData.titleTxt);
+                          .gotoRoomBookingScreen(widget.hotelData.titleTxt, hotelData: widget.hotelData);
                     },
                   ),
                 ),
@@ -243,15 +244,32 @@ class _HotelDetailesState extends State<HotelDetailes>
                   Expanded(
                     child: SizedBox(),
                   ),
-                  // like and unlike view
-                  _getAppBarUi(
-                      AppTheme.backgroundColor,
-                      isFav ? Icons.favorite : Icons.favorite_border,
-                      AppTheme.primaryColor, () {
-                    setState(() {
-                      isFav = !isFav;
-                    });
-                  })
+                  // like and unlike view with Provider
+                  Consumer<FavoritesProvider>(
+                    builder: (context, favProvider, child) {
+                      bool isFavorite = favProvider.isFavorite(widget.hotelData.imagePath);
+                      return _getAppBarUi(
+                        AppTheme.backgroundColor,
+                        isFavorite ? Icons.favorite : Icons.favorite_border,
+                        AppTheme.primaryColor, 
+                        () async {
+                          await favProvider.toggleFavorite(widget.hotelData);
+                          // إظهار رسالة تأكيد
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(
+                                isFavorite 
+                                  ? 'تم حذف ${widget.hotelData.titleTxt} من المفضلة'
+                                  : 'تم إضافة ${widget.hotelData.titleTxt} للمفضلة',
+                              ),
+                              duration: Duration(seconds: 2),
+                              backgroundColor: isFavorite ? Colors.red : AppTheme.primaryColor,
+                            ),
+                          );
+                        },
+                      );
+                    },
+                  )
                 ],
               ),
             ),
@@ -297,7 +315,7 @@ class _HotelDetailesState extends State<HotelDetailes>
         children: <Widget>[
           Expanded(
             child: Text(
-              AppLocalizations(context).of(title),
+               (title),
               // "Photos",
               style: TextStyles(context).getBoldStyle().copyWith(
                     fontSize: 14,
@@ -314,7 +332,7 @@ class _HotelDetailesState extends State<HotelDetailes>
                 child: Row(
                   children: <Widget>[
                     Text(
-                      AppLocalizations(context).of(view),
+                       (view),
                       //  'View all',
                       textAlign: TextAlign.left,
                       style: TextStyles(context).getBoldStyle().copyWith(
@@ -370,9 +388,12 @@ class _HotelDetailesState extends State<HotelDetailes>
                           top: 0,
                           child: Container(
                             width: MediaQuery.of(context).size.width,
-                            child: Image.asset(
-                              hotelData.imagePath,
-                              fit: BoxFit.cover,
+                            child: Hero(
+                              tag: "hotel_image_${hotelData.imagePath}", // نفس التاغ المستخدم في CategoryView
+                              child: Image.asset(
+                                hotelData.imagePath,
+                                fit: BoxFit.cover,
+                              ),
                             ),
                           ),
                         ),
@@ -415,13 +436,13 @@ class _HotelDetailesState extends State<HotelDetailes>
                                           bottom: 16,
                                           top: 16),
                                       child: CommonButton(
-                                          buttonText: AppLocalizations(context)
-                                              .of("book_now"),
-                                          onTap: () {
-                                            NavigationServices(context)
-                                                .gotoRoomBookingScreen(
-                                                    widget.hotelData.titleTxt);
-                                          }),
+                                          buttonText: ("book_now"),
+                                      onTap: () {
+                                        NavigationServices(context)
+                                            .gotoRoomBookingScreen(
+                                                widget.hotelData.titleTxt, 
+                                                hotelData: widget.hotelData);
+                                      }),
                                     ),
                                   ],
                                 ),
@@ -474,9 +495,7 @@ class _HotelDetailesState extends State<HotelDetailes>
                                         crossAxisAlignment:
                                             CrossAxisAlignment.center,
                                         children: <Widget>[
-                                          Text(
-                                            AppLocalizations(context)
-                                                .of("more_details"),
+                                          Text(("more_details"),
                                             style: TextStyles(context)
                                                 .getBoldStyle()
                                                 .copyWith(
@@ -564,7 +583,7 @@ class _HotelDetailesState extends State<HotelDetailes>
                   ),
                   Expanded(
                     child: Text(
-                      AppLocalizations(context).of("km_to_city"),
+                       ("km_to_city"),
                       overflow: TextOverflow.ellipsis,
                       style: TextStyles(context).getRegularStyle().copyWith(
                             fontSize: 14,
@@ -598,7 +617,7 @@ class _HotelDetailesState extends State<HotelDetailes>
                                     ),
                           ),
                           Text(
-                            AppLocalizations(context).of("reviews"),
+                             ("reviews"),
                             style:
                                 TextStyles(context).getRegularStyle().copyWith(
                                       fontSize: 14,
@@ -628,7 +647,7 @@ class _HotelDetailesState extends State<HotelDetailes>
                   ),
             ),
             Text(
-              AppLocalizations(context).of("per_night"),
+               ("per_night"),
               style: TextStyles(context).getRegularStyle().copyWith(
                     fontSize: 14,
                     color: isInList

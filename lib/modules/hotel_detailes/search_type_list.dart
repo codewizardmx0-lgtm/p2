@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/language/appLocalizations.dart';
 import 'package:flutter_app/widgets/common_card.dart';
 import '../../models/hotel_list_data.dart';
 
@@ -18,6 +17,7 @@ class _SearchTypeListViewState extends State<SearchTypeListView>
   void initState() {
     animationController = AnimationController(
         duration: Duration(milliseconds: 2000), vsync: this);
+    animationController.forward();
     super.initState();
   }
 
@@ -37,22 +37,30 @@ class _SearchTypeListViewState extends State<SearchTypeListView>
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
           var count = hotelTypeList.length;
-          var animation = Tween(begin: 0.0, end: 1.0).animate(
+
+          final animation = Tween<double>(begin: 0.0, end: 1.0).animate(
             CurvedAnimation(
               parent: animationController,
               curve: Interval((1 / count) * index, 1.0,
                   curve: Curves.fastOutSlowIn),
             ),
           );
-          animationController.forward();
+
+          final slideAnimation = Tween<Offset>(
+            begin: Offset(0.5, 0), // يتحرك من اليمين إلى مكانه
+            end: Offset.zero,
+          ).animate(CurvedAnimation(
+            parent: animationController,
+            curve: Interval((1 / count) * index, 1.0, curve: Curves.easeOut),
+          ));
+
           return AnimatedBuilder(
             animation: animationController,
             builder: (BuildContext context, Widget? child) {
               return FadeTransition(
                 opacity: animation,
-                child: new Transform(
-                  transform: new Matrix4.translationValues(
-                      50 * (1.0 - animation.value), 0.0, 0.0),
+                child: SlideTransition(
+                  position: slideAnimation,
                   child: Padding(
                     padding: const EdgeInsets.only(
                         left: 8.0, right: 8.0, bottom: 8, top: 0),
@@ -116,8 +124,9 @@ class _SearchTypeListViewState extends State<SearchTypeListView>
                                       child: Center(
                                         child: Icon(
                                           Icons.check,
-                                          color:
-                                              Theme.of(context).colorScheme.background,
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .background,
                                         ),
                                       ),
                                     ),
@@ -130,8 +139,7 @@ class _SearchTypeListViewState extends State<SearchTypeListView>
                         Padding(
                           padding: const EdgeInsets.only(top: 4),
                           child: Text(
-                            AppLocalizations(context)
-                                .of(hotelTypeList[index].titleTxt),
+                            hotelTypeList[index].titleTxt,
                             maxLines: 2,
                             style: TextStyle(fontSize: 12),
                           ),
